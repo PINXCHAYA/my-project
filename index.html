@@ -6,17 +6,17 @@
   <title>UX/UI Designer Portfolio</title>
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121a2f;
-      --card: rgba(255,255,255,0.06);
-      --line: rgba(255,255,255,0.1);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #8b5cf6;
-      --accent-2: #22d3ee;
-      --shadow: 0 20px 50px rgba(0,0,0,0.35);
-      --radius: 24px;
-    }
+  --bg: #07111f;
+  --bg-soft: #0f1b2d;
+  --card: rgba(255,255,255,0.08);
+  --line: rgba(255,255,255,0.14);
+  --text: #f8fafc;
+  --muted: #dbe4f0;
+  --accent: #a855f7;
+  --accent-2: #22d3ee;
+  --shadow: 0 20px 50px rgba(0,0,0,0.35);
+  --radius: 24px;
+}
 
     * {
       box-sizing: border-box;
@@ -25,21 +25,22 @@
       scroll-behavior: smooth;
     }
 
-    body {
+   body {
   font-family: Arial, sans-serif;
   color: var(--text);
   line-height: 1.6;
-
-  background: linear-gradient(
-    -45deg,
-    #0b1020,
-    #1e1b4b,
-    #0ea5e9,
-    #8b5cf6
-  );
-
+  background: linear-gradient(-45deg, #07111f, #0b1730, #12345a, #1b3f6b);
   background-size: 400% 400%;
   animation: gradientFlow 15s ease infinite;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 20, 0.32);
+  pointer-events: none;
+  z-index: -1;
 }
 
     img {
@@ -58,13 +59,13 @@
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(11, 16, 32, 0.7);
-      border-bottom: 1px solid var(--line);
-    }
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  background: rgba(6, 14, 28, 0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
     nav {
       display: flex;
@@ -86,13 +87,13 @@
     }
 
     nav a {
-      color: var(--muted);
-      transition: 0.25s ease;
-    }
+  color: #dbe4f0;
+  transition: 0.25s ease;
+}
 
-    nav a:hover {
-      color: var(--text);
-    }
+nav a:hover {
+  color: #ffffff;
+}
 
     .hero {
       min-height: 100vh;
@@ -109,22 +110,23 @@
     }
 
     .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.04);
-      margin-bottom: 20px;
-      animation: fadeUp 0.8s ease both;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  color: #f8fafc;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 20px;
+  animation: fadeUp 0.8s ease both;
+}
 
     .gradient-text {
-  background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+  background: linear-gradient(90deg, #c084fc 0%, #a78bfa 35%, #67e8f9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
 }
 
     .hero h1 {
@@ -134,13 +136,13 @@
       animation: fadeUp 0.9s ease both;
     }
 
-    .hero p {
-      color: var(--muted);
-      font-size: 20px;
-      max-width: 620px;
-      margin-bottom: 28px;
-      animation: fadeUp 1s ease both;
-    }
+    .hero p,
+.section-subtitle,
+.card p,
+.project-content p,
+.contact-box p {
+  color: #e5edf7;
+}
 
     .hero-buttons {
       display: flex;
@@ -194,15 +196,16 @@
 }
 
     .btn-secondary {
-      border-color: var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
-    }
+  border: 1px solid rgba(255,255,255,0.28);
+  color: #ffffff;
+  background: rgba(7, 17, 31, 0.28);
+  backdrop-filter: blur(8px);
+}
 
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.06);
-    }
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.10);
+}
 
     .hero-card {
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
