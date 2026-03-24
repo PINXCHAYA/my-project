@@ -470,6 +470,87 @@ nav a:hover {
   pointer-events: none;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  background: linear-gradient(-45deg, #07111f, #0b1730, #12345a, #1b3f6b);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+  pointer-events: none;
+  z-index: -3;
+}
+
+.mouse-glow {
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -2;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear;
+}
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  from {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes floatGlow {
   0% {
     transform: translate(0, 0);
@@ -557,6 +638,9 @@ nav a:hover {
   </style>
 </head>
 <body>
+<div class="bg-grid"></div>
+<div class="mouse-glow" id="mouseGlow"></div>
+<div class="particles" id="particles"></div>
   <div class="glow"></div>
   <div class="glow-2"></div>
   <header>
@@ -770,17 +854,47 @@ nav a:hover {
   </footer>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
+  const reveals = document.querySelectorAll('.reveal');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.15 });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.15 });
 
-    reveals.forEach((el) => observer.observe(el));
-  </script>
+  reveals.forEach((el) => observer.observe(el));
+
+  const mouseGlow = document.getElementById("mouseGlow");
+
+  window.addEventListener("mousemove", (e) => {
+    mouseGlow.style.left = e.clientX + "px";
+    mouseGlow.style.top = e.clientY + "px";
+  });
+
+  const particlesContainer = document.getElementById("particles");
+
+  function createParticle() {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+
+    const size = Math.random() * 6 + 2;
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.bottom = "-20px";
+    particle.style.animationDuration = (Math.random() * 8 + 8) + "s";
+    particle.style.opacity = Math.random().toFixed(2);
+
+    particlesContainer.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 16000);
+  }
+
+  setInterval(createParticle, 500);
+</script>
 </body>
 </html>
