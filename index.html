@@ -18,6 +18,18 @@
   --radius: 24px;
 }
 
+body.light-mode {
+  --bg: #f8fbff;
+  --bg-soft: #eaf2ff;
+  --card: rgba(255,255,255,0.7);
+  --line: rgba(15,23,42,0.10);
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #7c3aed;
+  --accent-2: #0891b2;
+  --shadow: 0 20px 50px rgba(15,23,42,0.12);
+}
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -32,6 +44,14 @@
   background: linear-gradient(-45deg, #07111f, #0b1730, #12345a, #1b3f6b);
   background-size: 400% 400%;
   animation: gradientFlow 15s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background: linear-gradient(-45deg, #f8fbff, #e0f2fe, #dbeafe, #eef2ff);
+  background-size: 400% 400%;
 }
 
 body::before {
@@ -65,6 +85,10 @@ body::before {
   backdrop-filter: blur(16px);
   background: rgba(6, 14, 28, 0.82);
   border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+body.light-mode header {
+  background: rgba(255, 255, 255, 0.72);
 }
 
     nav {
@@ -522,6 +546,32 @@ body {
   animation: floatParticle linear infinite;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.12);
+}
+
+body.light-mode .theme-toggle {
+  background: rgba(15,23,42,0.04);
+}
+
 @keyframes floatParticle {
   from {
     transform: translateY(0px);
@@ -635,6 +685,22 @@ body {
         padding: 24px;
       }
     }
+
+    @media (max-width: 700px) {
+  nav ul {
+    display: none;
+  }
+
+  .nav-right {
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -646,14 +712,19 @@ body {
   <header>
     <div class="container">
       <nav>
-        <div class="logo">PINXCHAYA</div>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Case Studies</a></li>
-          <li><a href="#skills">Tools</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+  <div class="logo">PINXCHAYA</div>
+
+  <div class="nav-right">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Case Studies</a></li>
+      <li><a href="#skills">Tools</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="themeToggle" class="theme-toggle" type="button">☀️ Light</button>
+  </div>
+</nav>
     </div>
   </header>
 
@@ -868,14 +939,18 @@ body {
 
   const mouseGlow = document.getElementById("mouseGlow");
 
-  window.addEventListener("mousemove", (e) => {
-    mouseGlow.style.left = e.clientX + "px";
-    mouseGlow.style.top = e.clientY + "px";
-  });
+  if (mouseGlow) {
+    window.addEventListener("mousemove", (e) => {
+      mouseGlow.style.left = e.clientX + "px";
+      mouseGlow.style.top = e.clientY + "px";
+    });
+  }
 
   const particlesContainer = document.getElementById("particles");
 
   function createParticle() {
+    if (!particlesContainer) return;
+
     const particle = document.createElement("div");
     particle.classList.add("particle");
 
@@ -895,6 +970,30 @@ body {
   }
 
   setInterval(createParticle, 500);
+
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+    if (themeToggle) themeToggle.textContent = "🌙 Dark";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+
+      const isLight = document.body.classList.contains("light-mode");
+
+      if (isLight) {
+        themeToggle.textContent = "🌙 Dark";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeToggle.textContent = "☀️ Light";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
 </script>
 </body>
 </html>
