@@ -7,7 +7,7 @@
   <style>
     
 
-body.dark-mode {
+:root {
   --bg-1: #020617;
   --bg-2: #020c1b;
   --bg-3: #031a2f;
@@ -44,6 +44,7 @@ body.dark-mode {
   --bg-glow-bottom: rgba(34, 211, 238, 0.10);
 
   --title-gradient: linear-gradient(90deg, #c084fc 0%, #818cf8 45%, #67e8f9 100%);
+  --radius: 24px;
 }
 
 body.light-mode {
@@ -1101,19 +1102,17 @@ body.light-mode {
 
   const themeToggle = document.getElementById("themeToggle");
 
-document.body.classList.add("dark-mode");
-document.body.classList.remove("light-mode");
-themeToggle.checked = false;
-
-themeToggle.addEventListener("change", () => {
-  if (themeToggle.checked) {
-    document.body.classList.remove("dark-mode");
-    document.body.classList.add("light-mode");
-  } else {
-    document.body.classList.add("dark-mode");
-    document.body.classList.remove("light-mode");
+  function applyTheme(theme) {
+    document.body.className = theme;
+    themeToggle.checked = theme === "light-mode";
   }
-});
+
+  // เริ่มต้นเป็น dark
+  applyTheme("dark-mode");
+
+  themeToggle.addEventListener("change", () => {
+    applyTheme(themeToggle.checked ? "light-mode" : "dark-mode");
+  });
 </script>
 </body>
 </html>
