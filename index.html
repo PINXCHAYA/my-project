@@ -6,7 +6,7 @@
   <title>PINXCHAYA — UX/UI Designer Portfolio</title>
   <style>
     :root {
-  --bg-1: #020617;   /* almost black blue */
+  --bg-1: #020617;
   --bg-2: #020c1b;
   --bg-3: #031a2f;
   --bg-4: #07213a;
@@ -22,9 +22,7 @@
   --accent-2: #22d3ee;
 
   --overlay: rgba(0, 0, 0, 0.35);
-
   --header-bg: rgba(2, 6, 23, 0.75);
-
   --grid-color: rgba(255,255,255,0.025);
 }
 
@@ -77,21 +75,27 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      color: var(--text);
-      line-height: 1.6;
-      background:
-  radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 18%),
-  radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.10), transparent 18%),
-  linear-gradient(-45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
-      animation: gradientFlow 16s ease infinite;
-      overflow-x: hidden;
-      position: relative;
-      transition: background 0.4s ease, color 0.3s ease;
-    }
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.10), transparent 18%),
+    linear-gradient(-45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
+  background-size: 400% 400%;
+  animation: gradientFlow 16s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.4s ease, color 0.3s ease;
+}
 
     body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  z-index: -1;
 }
 
     img {
@@ -1028,20 +1032,18 @@
   </footer>
 
   <script>
-  // reveal animation
-  const reveals = document.querySelectorAll(".reveal");
+  const reveals = document.querySelectorAll('.reveal');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        entry.target.classList.add('show');
       }
     });
   }, { threshold: 0.15 });
 
   reveals.forEach((el) => observer.observe(el));
 
-  // mouse glow
   const mouseGlow = document.getElementById("mouseGlow");
   if (mouseGlow) {
     window.addEventListener("mousemove", (e) => {
@@ -1050,14 +1052,13 @@
     });
   }
 
-  // particles
   const particlesContainer = document.getElementById("particles");
 
   function createParticle() {
     if (!particlesContainer) return;
 
     const particle = document.createElement("div");
-    particle.className = "particle";
+    particle.classList.add("particle");
 
     const size = Math.random() * 6 + 2;
     particle.style.width = size + "px";
@@ -1076,24 +1077,20 @@
 
   setInterval(createParticle, 500);
 
-  // theme system
   const themeToggle = document.getElementById("themeToggle");
-
-  // รีเซ็ตค่าธีมเก่าที่อาจค้าง
   const savedTheme = localStorage.getItem("theme");
 
-  // default = dark
+  // default = dark mode
   if (savedTheme === "light") {
     document.body.classList.add("light-mode");
     themeToggle.checked = true;
   } else {
     document.body.classList.remove("light-mode");
     themeToggle.checked = false;
-    localStorage.setItem("theme", "dark");
   }
 
-  themeToggle.addEventListener("change", function () {
-    if (this.checked) {
+  themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
       document.body.classList.add("light-mode");
       localStorage.setItem("theme", "light");
     } else {
