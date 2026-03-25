@@ -43,6 +43,9 @@ body.dark-mode {
   --glow-2: rgba(34, 211, 238, 0.12);
   --mouse-glow: rgba(34, 211, 238, 0.10);
 
+  --bg-glow-top: rgba(139, 92, 246, 0.12);
+  --bg-glow-bottom: rgba(34, 211, 238, 0.10);
+
   --title-gradient: linear-gradient(90deg, #c084fc 0%, #818cf8 45%, #67e8f9 100%);
 }
 
@@ -50,7 +53,7 @@ body.light-mode {
   --bg-1: #eef4fb;
   --bg-2: #e8f2ff;
   --bg-3: #ddeefe;
-  --bg-4: #f3f7fc;
+  --bg-4: #f8fbff;
 
   --surface: rgba(255, 255, 255, 0.72);
   --surface-strong: rgba(255, 255, 255, 0.94);
@@ -64,9 +67,9 @@ body.light-mode {
 
   --shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
   --header-bg: rgba(255, 255, 255, 0.70);
-  --overlay: rgba(255, 255, 255, 0.08);
+  --overlay: rgba(255, 255, 255, 0.10);
 
-  --tag-bg: rgba(255, 255, 255, 0.42);
+  --tag-bg: rgba(255, 255, 255, 0.72);
   --tag-text: #0f172a;
 
   --secondary-btn-bg: rgba(255, 255, 255, 0.72);
@@ -75,9 +78,12 @@ body.light-mode {
   --grid-color: rgba(15, 23, 42, 0.05);
   --particle-color: rgba(15, 23, 42, 0.10);
 
-  --glow-1: rgba(168, 85, 247, 0.12);
-  --glow-2: rgba(34, 211, 238, 0.10);
-  --mouse-glow: rgba(14, 165, 233, 0.08);
+  --glow-1: rgba(168, 85, 247, 0.08);
+  --glow-2: rgba(34, 211, 238, 0.06);
+  --mouse-glow: rgba(14, 165, 233, 0.05);
+
+  --bg-glow-top: rgba(168, 85, 247, 0.06);
+  --bg-glow-bottom: rgba(14, 165, 233, 0.05);
 
   --title-gradient: linear-gradient(90deg, #9333ea 0%, #6366f1 45%, #0284c7 100%);
 }
@@ -98,8 +104,8 @@ body.light-mode {
   color: var(--text);
   line-height: 1.6;
   background:
-    radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 18%),
-    radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.10), transparent 18%),
+    radial-gradient(circle at top left, var(--bg-glow-top), transparent 18%),
+    radial-gradient(circle at bottom right, var(--bg-glow-bottom), transparent 18%),
     linear-gradient(-45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
   background-size: 400% 400%;
   animation: gradientFlow 16s ease infinite;
