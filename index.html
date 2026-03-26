@@ -78,7 +78,7 @@ body.light-mode {
 
   --glow-1: transparent;
   --glow-2: transparent;
-  --mouse-glow: rgba(26, 209, 237, 0.1);
+  --mouse-glow: rgba(99, 102, 241, 0.08);
 
   --bg-glow-top: transparent;
   --bg-glow-bottom: transparent;
@@ -90,12 +90,12 @@ body.light-mode {
   animation: none;
 }
 
-body.light-mode::before {
-  background: transparent;
-}
-
 body.light-mode .bg-grid {
   opacity: 0.55;
+}
+
+body.light-mode .mouse-glow {
+  filter: blur(55px);
 }
 
     * {
