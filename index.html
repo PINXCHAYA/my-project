@@ -561,6 +561,46 @@ body.light-mode .mouse-glow {
   gap: 16px;
 }
 
+.experience-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 8px 0 22px;
+}
+
+.filter-tab {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.filter-tab:hover {
+  transform: translateY(-2px);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.filter-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
+
+.experience-project {
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.experience-project.is-hidden {
+  display: none;
+}
+
 .experience-project {
   display: flex;
   justify-content: space-between;
@@ -1089,6 +1129,12 @@ UX/UI Designer.</h1>
       </p>
     </div>
 
+    <div class="experience-filters" id="experienceFilters">
+  <button class="filter-tab active" data-filter="all" type="button">All</button>
+  <button class="filter-tab" data-filter="2024" type="button">2024</button>
+  <button class="filter-tab" data-filter="2025" type="button">2025</button>
+</div>
+
     <div class="experience-list">
       <article class="experience-card">
         <div class="experience-top">
@@ -1104,35 +1150,35 @@ UX/UI Designer.</h1>
         </p>
 
         <div class="experience-projects">
-          <div class="experience-project">
-            <div class="experience-project-info">
-              <h4>Banking App Redesign</h4>
-              <p>
-                Redesigned the mobile banking experience to improve trust, simplify navigation, and make core actions faster and clearer for users.
-              </p>
-              <div class="experience-tags">
-                <span class="pill">Mobile App</span>
-                <span class="pill">Research</span>
-                <span class="pill">UI System</span>
-              </div>
-            </div>
-            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
-          </div>
+        <div class="experience-project" data-year="2024">
+  <div class="experience-project-info">
+    <h4>Banking App Redesign</h4>
+    <p>
+      Redesigned the mobile banking experience to improve trust, simplify navigation, and make core actions faster and clearer for users.
+    </p>
+    <div class="experience-tags">
+      <span class="pill">Mobile App</span>
+      <span class="pill">Research</span>
+      <span class="pill">UI System</span>
+    </div>
+  </div>
+  <a class="btn btn-secondary experience-link" href="#banking-app">View Details</a>
+</div>
 
-          <div class="experience-project">
-            <div class="experience-project-info">
-              <h4>Investment Portfolio Dashboard</h4>
-              <p>
-                Designed a dashboard to help users understand portfolio performance, asset allocation, and investment insights in a more visual and accessible way.
-              </p>
-              <div class="experience-tags">
-                <span class="pill">Dashboard</span>
-                <span class="pill">Data UX</span>
-                <span class="pill">Prototype</span>
-              </div>
-            </div>
-            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
-          </div>
+<div class="experience-project" data-year="2025">
+  <div class="experience-project-info">
+    <h4>Investment Portfolio Dashboard</h4>
+    <p>
+      Designed a dashboard to help users understand portfolio performance, asset allocation, and investment insights in a more visual and accessible way.
+    </p>
+    <div class="experience-tags">
+      <span class="pill">Dashboard</span>
+      <span class="pill">Data UX</span>
+      <span class="pill">Prototype</span>
+    </div>
+  </div>
+  <a class="btn btn-secondary experience-link" href="#investment-portfolio">View Details</a>
+</div>
         </div>
       </article>
 
@@ -1183,7 +1229,7 @@ UX/UI Designer.</h1>
       </article>
     </div>
   </div>
-  
+
 </section>
   <section id="skills" class="reveal">
     <div class="container">
@@ -1324,6 +1370,7 @@ UX/UI Designer.</h1>
   }
 
   const particlesContainer = document.getElementById("particles");
+
   function createParticle() {
     if (!particlesContainer) return;
 
@@ -1351,15 +1398,50 @@ UX/UI Designer.</h1>
 
   function applyTheme(theme) {
     document.body.className = theme;
-    themeToggle.checked = theme === "light-mode";
+    if (themeToggle) {
+      themeToggle.checked = theme === "light-mode";
+    }
   }
 
-  // เริ่มต้นเป็น dark
   applyTheme("dark-mode");
 
-  themeToggle.addEventListener("change", () => {
-    applyTheme(themeToggle.checked ? "light-mode" : "dark-mode");
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("change", () => {
+      applyTheme(themeToggle.checked ? "light-mode" : "dark-mode");
+    });
+  }
+
+  const filterTabs = document.querySelectorAll(".filter-tab");
+  const experienceCards = document.querySelectorAll(".experience-card");
+
+  if (filterTabs.length && experienceCards.length) {
+    filterTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+
+        filterTabs.forEach((btn) => btn.classList.remove("active"));
+        tab.classList.add("active");
+
+        experienceCards.forEach((card) => {
+          const projects = card.querySelectorAll(".experience-project");
+          let hasVisibleProject = false;
+
+          projects.forEach((project) => {
+            const year = project.dataset.year;
+
+            if (filter === "all" || year === filter) {
+              project.classList.remove("is-hidden");
+              hasVisibleProject = true;
+            } else {
+              project.classList.add("is-hidden");
+            }
+          });
+
+          card.style.display = hasVisibleProject ? "block" : "none";
+        });
+      });
+    });
+  }
 </script>
 </body>
 </html>
