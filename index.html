@@ -498,6 +498,124 @@ body.light-mode .mouse-glow {
       gap: 24px;
     }
 
+    .experience-list {
+  display: grid;
+  gap: 24px;
+}
+
+.experience-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.experience-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.experience-company h3 {
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.experience-role {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.experience-period {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.experience-desc {
+  color: var(--muted);
+  margin-bottom: 22px;
+  max-width: 900px;
+  line-height: 1.75;
+}
+
+.experience-projects {
+  display: grid;
+  gap: 16px;
+}
+
+.experience-project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+  border-radius: 22px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.experience-project:hover {
+  transform: translateY(-3px);
+  background: var(--surface);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.experience-project-info h4 {
+  font-size: 22px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.experience-project-info p {
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.experience-link {
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .experience-card {
+    padding: 22px;
+  }
+
+  .experience-project {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-project-info h4 {
+    font-size: 20px;
+  }
+}
+
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -866,6 +984,7 @@ body.light-mode .mouse-glow {
         <div class="nav-right">
           <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Case Studies</a></li>
             <li><a href="#skills">Tools</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -961,6 +1080,111 @@ UX/UI Designer.</h1>
     </div>
   </section>
 
+  <section id="experience" class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-subtitle">
+        My experience across different teams, the products I worked on, and the projects I helped design from concept to execution.
+      </p>
+    </div>
+
+    <div class="experience-list">
+      <article class="experience-card">
+        <div class="experience-top">
+          <div class="experience-company">
+            <h3>ABC Fintech Co., Ltd.</h3>
+            <span class="experience-role">UX/UI Designer</span>
+          </div>
+          <div class="experience-period">2024 — Present</div>
+        </div>
+
+        <p class="experience-desc">
+          Worked on digital financial products with a focus on user flows, interface redesign, usability improvement, and mobile-first experiences for retail banking users.
+        </p>
+
+        <div class="experience-projects">
+          <div class="experience-project">
+            <div class="experience-project-info">
+              <h4>Banking App Redesign</h4>
+              <p>
+                Redesigned the mobile banking experience to improve trust, simplify navigation, and make core actions faster and clearer for users.
+              </p>
+              <div class="experience-tags">
+                <span class="pill">Mobile App</span>
+                <span class="pill">Research</span>
+                <span class="pill">UI System</span>
+              </div>
+            </div>
+            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
+          </div>
+
+          <div class="experience-project">
+            <div class="experience-project-info">
+              <h4>Investment Portfolio Dashboard</h4>
+              <p>
+                Designed a dashboard to help users understand portfolio performance, asset allocation, and investment insights in a more visual and accessible way.
+              </p>
+              <div class="experience-tags">
+                <span class="pill">Dashboard</span>
+                <span class="pill">Data UX</span>
+                <span class="pill">Prototype</span>
+              </div>
+            </div>
+            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="experience-card">
+        <div class="experience-top">
+          <div class="experience-company">
+            <h3>Creative Digital Studio</h3>
+            <span class="experience-role">UI Designer / Freelance</span>
+          </div>
+          <div class="experience-period">2023 — 2024</div>
+        </div>
+
+        <p class="experience-desc">
+          Collaborated with clients on responsive websites, brand landing pages, and product interfaces, translating business goals into clean and modern visual design solutions.
+        </p>
+
+        <div class="experience-projects">
+          <div class="experience-project">
+            <div class="experience-project-info">
+              <h4>Travel Booking Website</h4>
+              <p>
+                Designed a booking flow focused on search clarity, faster checkout, and an intuitive user journey across desktop and mobile.
+              </p>
+              <div class="experience-tags">
+                <span class="pill">Website</span>
+                <span class="pill">Responsive</span>
+                <span class="pill">Interaction</span>
+              </div>
+            </div>
+            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
+          </div>
+
+          <div class="experience-project">
+            <div class="experience-project-info">
+              <h4>E-commerce Admin Dashboard</h4>
+              <p>
+                Created an internal dashboard interface to make reporting, stock tracking, and team operations easier to manage.
+              </p>
+              <div class="experience-tags">
+                <span class="pill">Admin</span>
+                <span class="pill">Dashboard</span>
+                <span class="pill">UX Strategy</span>
+              </div>
+            </div>
+            <a class="btn btn-secondary experience-link" href="#projects">View Details</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  
+</section>
   <section id="skills" class="reveal">
     <div class="container">
       <div class="section-head">
