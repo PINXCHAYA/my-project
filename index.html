@@ -48,14 +48,14 @@
 }
 
 body.light-mode {
-  --bg-1: #eef4fb;
-  --bg-2: #e8f2ff;
-  --bg-3: #ddeefe;
-  --bg-4: #f8fbff;
+  --bg-1: #ffffff;
+  --bg-2: #ffffff;
+  --bg-3: #ffffff;
+  --bg-4: #ffffff;
 
-  --surface: rgba(255, 255, 255, 0.72);
-  --surface-strong: rgba(255, 255, 255, 0.94);
-  --line: rgba(15, 23, 42, 0.10);
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: rgba(255, 255, 255, 0.98);
+  --line: rgba(15, 23, 42, 0.08);
 
   --text: #0f172a;
   --muted: #475569;
@@ -63,27 +63,31 @@ body.light-mode {
   --accent: #7c3aed;
   --accent-2: #0891b2;
 
-  --shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
-  --header-bg: rgba(255, 255, 255, 0.70);
-  --overlay: rgba(255, 255, 255, 0.10);
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --overlay: transparent;
 
-  --tag-bg: rgba(255, 255, 255, 0.72);
+  --tag-bg: rgba(255, 255, 255, 0.95);
   --tag-text: #0f172a;
 
-  --secondary-btn-bg: rgba(255, 255, 255, 0.72);
+  --secondary-btn-bg: rgba(255, 255, 255, 0.95);
   --secondary-btn-border: rgba(15, 23, 42, 0.10);
 
-  --grid-color: rgba(15, 23, 42, 0.05);
-  --particle-color: rgba(15, 23, 42, 0.10);
+  --grid-color: rgba(15, 23, 42, 0.03);
+  --particle-color: rgba(15, 23, 42, 0.06);
 
-  --glow-1: rgba(168, 85, 247, 0.08);
-  --glow-2: rgba(34, 211, 238, 0.06);
-  --mouse-glow: rgba(14, 165, 233, 0.05);
+  --glow-1: transparent;
+  --glow-2: transparent;
+  --mouse-glow: transparent;
 
-  --bg-glow-top: rgba(168, 85, 247, 0.06);
-  --bg-glow-bottom: rgba(14, 165, 233, 0.05);
+  --bg-glow-top: transparent;
+  --bg-glow-bottom: transparent;
 
   --title-gradient: linear-gradient(90deg, #9333ea 0%, #6366f1 45%, #0284c7 100%);
+}
+
+body.light-mode .bg-grid {
+  opacity: 0.35;
 }
 
     * {
